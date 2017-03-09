@@ -6,10 +6,10 @@ main()
    
 int wrfd,rdfd,n,d,ret_val,count; char buf[50];
 
-/*create the first named pipe */ 
-ret_val=mkfifo("np1",0666); 
-/*create the second named pipe */ 
-ret_val=mkfifo("np2",0666);
+///*create the first named pipe */ 
+//ret_val=mkfifo("np1",0666); 
+///*create the second named pipe */ 
+//ret_val=mkfifo("np2",0666);
 
 /*open the first named pipe for reading*/ 
 rdfd=open("np1",O_RDONLY);
