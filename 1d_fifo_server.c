@@ -1,41 +1,41 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<fcntl.h>
-main()
-{
-   
-int wrfd,rdfd,n,d,ret_val,count; char buf[50];
 
-///*create the first named pipe */ 
-//ret_val=mkfifo("np1",0666); 
-///*create the second named pipe */ 
-//ret_val=mkfifo("np2",0666);
+main() {
 
-/*open the first named pipe for reading*/ 
-rdfd=open("np1",O_RDONLY);
+    int wrfd, rdfd, n, d, ret_val, count;
+    char buf[50];
 
-/*open the second named pipe for writing*/ 
-wrfd=open("np2",O_WRONLY);
+    /*create the first named pipe */
+    ret_val = mkfifo("np1", 0666);
+    /*create the second named pipe */
+    ret_val = mkfifo("np2", 0666);
 
-/*read from the first pipe*/ 
-n=read(rdfd,buf,50); 
-buf[n]='\0';//end of line
+    /*open the first named pipe for reading*/
+    rdfd = open("np1", O_RDONLY);
 
-printf("full duplex server:read from the pipe:%s\n",buf);
+    /*open the second named pipe for writing*/
+    wrfd = open("np2", O_WRONLY);
 
-/*convert the string to upper class*/ 
-count=0;
+    /*read from the first pipe*/
+    n = read(rdfd, buf, 50);
+    buf[n] = '\0'; //end of line
 
-while(count<n)
-{
+    printf("full duplex server:read from the pipe:%s\n", buf);
 
-buf[count]=toupper(buf[count]);
-count++;
+    /*convert the string to upper class*/
+    count = 0;
 
-}
-/*write the convertor string back to second pipe*/
+    while (count < n) {
 
-write(wrfd,buf,strlen(buf));
+        buf[count] = toupper(buf[count]);
+        count++;
+
+    }
+    /*write the convertor string back to second pipe*/
+
+    write(wrfd, buf, strlen(buf));
 
 }
 
